@@ -20,7 +20,7 @@ jobs:
       - name: Install Migrax from this commit's manifest
         shell: pwsh
         run: |
-          scoop install ./bucket/migrax.json
+          scoop install (Join-Path $env:GITHUB_WORKSPACE 'bucket' 'migrax.json')
           migrax version
           if ($LASTEXITCODE -ne 0) { exit 1 }
           scoop uninstall migrax
