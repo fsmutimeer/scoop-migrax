@@ -1,14 +1,14 @@
 {
-    "version": "0.8.0",
+    "version": "0.9.0",
     "description": "Database migrations generated from your JPA entities",
     "homepage": "https://migrax.org/",
     "license": "MIT",
     "suggest": {
         "JDK": "java/temurin21-jdk"
     },
-    "url": "https://github.com/fsmutimeer/migrax/releases/download/v0.8.0/migrax-0.8.0.zip",
-    "hash": "81f624582cc70c68390466d7ab91caf0e953d4e8d9e9a729753fd9563bea9056",
-    "extract_dir": "migrax-0.8.0",
+    "url": "https://github.com/fsmutimeer/migrax/releases/download/v0.9.0/migrax-0.9.0.zip",
+    "hash": "3400fba7b6420350c464a893f8de25b7a7d1ee1dfc625c00ceb9d1d4c9ba7ab3",
+    "extract_dir": "migrax-0.9.0",
     "bin": "bin\\migrax.cmd",
     "checkver": "github",
     "autoupdate": {
