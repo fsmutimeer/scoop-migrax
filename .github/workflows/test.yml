@@ -1,0 +1,26 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  install:
+    name: scoop install
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install Scoop
+        shell: pwsh
+        run: |
+          Invoke-RestMethod get.scoop.sh -OutFile install-scoop.ps1
+          .\install-scoop.ps1 -RunAsAdmin
+          Add-Content $env:GITHUB_PATH "$env:USERPROFILE\scoop\shims"
+      - name: Install Migrax from the bucket
+        shell: pwsh
+        run: |
+          scoop bucket add migrax "$env:GITHUB_WORKSPACE"
+          scoop install migrax/migrax
+          migrax version
+          if ($LASTEXITCODE -ne 0) { exit 1 }
