@@ -17,10 +17,18 @@ jobs:
           Invoke-RestMethod get.scoop.sh -OutFile install-scoop.ps1
           .\install-scoop.ps1 -RunAsAdmin
           Add-Content $env:GITHUB_PATH "$env:USERPROFILE\scoop\shims"
-      - name: Install Migrax from the bucket
+      - name: Install Migrax from this commit's manifest
         shell: pwsh
         run: |
-          scoop bucket add migrax "$env:GITHUB_WORKSPACE"
+          scoop install .ucket\migrax.json
+          migrax version
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          scoop uninstall migrax
+      - name: Install Migrax the way users do
+        if: github.event_name != 'pull_request'
+        shell: pwsh
+        run: |
+          scoop bucket add migrax https://github.com/${{ github.repository }}
           scoop install migrax/migrax
           migrax version
           if ($LASTEXITCODE -ne 0) { exit 1 }
