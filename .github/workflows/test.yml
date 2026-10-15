@@ -20,7 +20,7 @@ jobs:
       - name: Install Migrax from this commit's manifest
         shell: pwsh
         run: |
-          scoop install .ucket\migrax.json
+          scoop install ./bucket/migrax.json
           migrax version
           if ($LASTEXITCODE -ne 0) { exit 1 }
           scoop uninstall migrax
